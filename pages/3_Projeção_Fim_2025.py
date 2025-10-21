@@ -116,6 +116,29 @@ df_proj["type"] = np.where(df_proj.index <= last_date, "Histórico", "Projeção
 vline_date = last_date
 
 # ==========================================================
+# DESCRIÇÃO DOS MODELOS
+# ==========================================================
+st.markdown(
+    """
+### 🧮 Sobre os Modelos de Projeção
+
+Para realizar as previsões, foram combinados dois componentes principais:
+
+**1️⃣ SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous factors)**  
+Modelo estatístico clássico de séries temporais que combina **tendência, autocorrelação e sazonalidade**.  
+Ele é capaz de capturar relações temporais de curto e médio prazo, considerando também **variáveis externas (exógenas)**, como os termos de sazonalidade gerados pelo Fourier.
+
+**2️⃣ Componentes Fourier**  
+O método de Fourier adiciona **funções senoidais e cossenoidais** ao modelo para representar **padrões sazonais complexos** — como ciclos **semanais e anuais** — que o SARIMAX, sozinho, não captaria com tanta precisão.  
+Esses termos permitem que o modelo reproduza comportamentos **repetitivos** (por exemplo, aumentos de sessões no final do ano).
+
+🔹 **Em conjunto**, o SARIMAX + Fourier fornece projeções mais estáveis e realistas, ajustadas aos ciclos observados historicamente.
+
+---
+"""
+)
+
+# ==========================================================
 # KPIs
 # ==========================================================
 st.subheader("📊 Indicadores Gerais (SARIMAX + Fourier)")
