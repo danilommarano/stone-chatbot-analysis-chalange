@@ -116,5 +116,5 @@ Este projeto é distribuído sob a licença **MIT** — uso livre para fins acad
 
 **Danilo Marano** \
 Engenheiro de Dados | Abrisuite \
-📧 [danilommarano@gmail.com](mailto:danilommarano@gmail.com) \
+📧 [danilom.m.marano@gmail.com](mailto:danilom.m.marano@gmail.com) \
 🌐 [github.com/danilommarano](https://github.com/danilommarano)
