@@ -3,10 +3,8 @@
 # ==============================================================
 FROM python:3.13-slim
 
-# Define o diretório de trabalho
 WORKDIR /app
 
-# Instala dependências do sistema necessárias
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl build-essential git && \
     rm -rf /var/lib/apt/lists/*
@@ -14,16 +12,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Instala o gerenciador de pacotes uv
 RUN pip install uv
 
+# ⚠️ Define variável de ambiente para o cache do uv
+ENV UV_CACHE_DIR=/app/.cache/uv
+
+# Cria o diretório do cache com permissão
+RUN mkdir -p /app/.cache/uv && chmod -R 777 /app/.cache
+
 # Copia os arquivos do projeto
 COPY . .
 
-# Instala as dependências via uv
+# Instala dependências via uv
 RUN uv sync --frozen
 
 # ==============================================================
 # Configuração do Streamlit
 # ==============================================================
-# Define as variáveis de ambiente do Streamlit
 ENV STREAMLIT_SERVER_PORT=7860
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ENABLECORS=false
