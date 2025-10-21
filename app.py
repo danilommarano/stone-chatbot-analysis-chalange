@@ -4,7 +4,7 @@ import streamlit as st
 # CONFIGURAÇÃO GERAL
 # ==========================================================
 st.set_page_config(
-    page_title="Início",  # <-- nome exibido no topo da sidebar e no navegador
+    page_title="Início",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -95,7 +95,7 @@ with col2:
 st.divider()
 
 # ==========================================================
-# RODAPÉ / CONTEXTO FINAL
+# COMO NAVEGAR
 # ==========================================================
 st.markdown(
     """
@@ -107,7 +107,29 @@ st.markdown(
 
 ---
 
-💡 *Desenvolvido por Danilo Marano — Equipe de Dados (Stone & Ton)*  
+💡 *Desenvolvido por **Danilo Marano*** — Equipe de Dados (Stone & Ton)  
 📅 Atualizado automaticamente conforme novas sessões são registradas.
+"""
+)
+
+st.divider()
+
+# ==========================================================
+# SEÇÃO GITHUB
+# ==========================================================
+st.markdown(
+    """
+## 📂 Código Fonte no GitHub
+
+O repositório completo do projeto está disponível publicamente no GitHub:  
+🔗 [**danilommarano/stone-chatbot-analysis-chalange**](https://github.com/danilommarano/stone-chatbot-analysis-chalange)
+
+Nele, você encontrará:
+- O **código completo** do dashboard em Streamlit (organizado por páginas);
+- Os **modelos estatísticos** utilizados nas projeções (SARIMAX + Fourier);
+- Scripts auxiliares de **pré-processamento e estruturação de dados**;
+- Instruções para **execução local via Docker** e **gerenciamento de dependências com `uv`**.
+
+Este repositório foi publicado para garantir **transparência técnica** e facilitar a **reprodutibilidade da análise**.
 """
 )
