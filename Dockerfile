@@ -3,8 +3,10 @@
 # ==============================================================
 FROM python:3.13-slim
 
+# Define o diretório de trabalho
 WORKDIR /app
 
+# Instala dependências do sistema necessárias
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl build-essential git && \
     rm -rf /var/lib/apt/lists/*
@@ -12,16 +14,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Instala o gerenciador de pacotes uv
 RUN pip install uv
 
-# ⚠️ Define variável de ambiente para o cache do uv
-ENV UV_CACHE_DIR=/app/.cache/uv
+# ==============================================================
+# Configura ambiente e permissões
+# ==============================================================
+# Define variável de cache do uv dentro do diretório do app
+ENV UV_CACHE_DIR=/app/.uvcache
+RUN mkdir -p /app/.uvcache
 
-# Cria o diretório do cache com permissão
-RUN mkdir -p /app/.cache/uv && chmod -R 777 /app/.cache
+# Cria um usuário não-root e dá a ele acesso total à pasta /app
+RUN useradd -m appuser && chown -R appuser:appuser /app
+USER appuser
 
-# Copia os arquivos do projeto
-COPY . .
-
-# Instala dependências via uv
+# ==============================================================
+# Copia o código e instala dependências
+# ==============================================================
+COPY --chown=appuser:appuser . /app
 RUN uv sync --frozen
 
 # ==============================================================
